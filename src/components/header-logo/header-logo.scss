@@ -1,0 +1,32 @@
+@use "../../scss/" as *;
+
+.logo {
+  position: fixed;
+  background-color: $body-bg;
+  width: 100%;
+  @include flex(center, center);
+  display: none;
+  @include mobile {
+    @include flex(center, center);
+  }
+  z-index: 2;
+}
+.header__logo {
+  font-size: 2rem;
+  width: auto;
+  width: 100px;
+
+  @include flex(center, center);
+  &__img {
+    color: $main-color;
+    margin-right: 10px;
+  }
+}
+
+.mobile__toggle {
+  position: absolute;
+  left: 20px;
+  top: 38px;
+  z-index: 98;
+  font-size: 2rem;
+}

@@ -1,0 +1,210 @@
+@use "../../scss/" as *;
+
+.sign-in {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  /* background-image: url("https://conwayyao.com/wp-content/uploads/2015/07/Cinema_Banner.jpeg"); */
+
+  background-color: white;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  @include flex(center, center);
+  flex-direction: column;
+
+  &__content {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: white;
+      z-index: -1;
+      opacity: 1;
+    }
+
+    position: relative;
+    color: $white;
+    z-index: 99;
+
+    width: 500px;
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+    @include flex(center, center);
+    flex-direction: column;
+    padding: 2rem 4rem;
+    border-radius: 2rem;
+    overflow: hidden;
+
+    @include mobile {
+      width: 300px;
+      height: 450px;
+      padding: 3rem 4rem;
+    }
+
+    &__logo {
+      padding-bottom: 1rem;
+      &__image {
+        font-size: 1.8rem;
+        color: $main-color;
+        margin-bottom: 0.5rem;
+
+        font-weight: 600;
+        @include flex(center, center);
+
+        & > * {
+          margin-right: 10px;
+        }
+      }
+
+      .welcome {
+        opacity: 0.5;
+        font-size: 1rem;
+        color: black;
+        margin-bottom: 1rem;
+      }
+    }
+
+    &__form {
+      width: 100%;
+
+      &__input {
+        margin-bottom: 0.8rem;
+        position: relative;
+
+        .icon {
+          border-bottom: 2px solid $main-color;
+          @include flex(center, center);
+        }
+
+        input {
+          color: $black;
+          width: 100%;
+          background-color: transparent;
+          border: 0;
+          margin: 5px;
+          font-size: 1rem;
+          padding: 5px;
+        }
+
+        i {
+          color: $main-color;
+          font-size: 1.5rem;
+        }
+
+        .error {
+          position: relative;
+          color: red;
+          font-size: 0.6rem;
+          top: 0.7rem;
+          width: 100%;
+        }
+      }
+
+      button {
+        width: 100%;
+        padding: 10px 0;
+        border-radius: 1rem;
+        color: $white;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 1rem;
+        background-color: $main-color;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: rgb(206, 0, 0);
+        }
+      }
+    }
+
+    &__media {
+      color: black;
+      width: 100%;
+
+      .account {
+        font-weight: 400;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: flex-end;
+
+        a {
+          color: $main-color;
+        }
+      }
+
+      .btns {
+        .other-sign-in {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1rem;
+          color: $txt-second-color;
+          font-size: 0.9rem;
+        }
+
+        .facebook {
+          position: relative;
+          width: 100%;
+          background-color: #1093f4;
+          border-radius: 1rem;
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+          margin-top: 1rem;
+          transition: background-color 0.3s ease;
+          color: $white;
+          padding: 10px 0;
+          @include flex(center, center);
+
+          &:hover {
+            background-color: #0978ce;
+          }
+
+          i {
+            position: absolute;
+            left: 1rem;
+            color: $white;
+            font-size: 1.5rem;
+            margin-right: 10px;
+          }
+        }
+
+        .google {
+          position: relative;
+
+          padding: 10px 0;
+          width: 100%;
+          background-color: #df4930;
+          border-radius: 1rem;
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+          margin-top: 1rem;
+          transition: background-color 0.3s ease;
+          color: $white;
+          @include flex(center, center);
+
+          &:hover {
+            background-color: #c63a21;
+          }
+
+          i {
+            position: absolute;
+            left: 1rem;
+            color: $white;
+            font-size: 1.5rem;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

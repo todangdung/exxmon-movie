@@ -1,0 +1,27 @@
+@use "../../scss/" as *;
+
+.home {
+  display: grid;
+  grid-template-columns: 72% 28%;
+  flex: 1;
+
+  @include mobile {
+    width: 100%;
+    display: flex;
+  }
+
+  .middle-side {
+    overflow: hidden;
+    overflow-y: auto;
+    height: 100vh;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+}
+
+.right-section {
+  z-index: 3;
+}

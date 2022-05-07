@@ -1,0 +1,13 @@
+@use "../../scss/" as *;
+
+.now-playing {
+  overflow: hidden;
+  overflow-y: auto;
+  max-height: 100vh;
+  width: 100%;
+  flex: 1;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}

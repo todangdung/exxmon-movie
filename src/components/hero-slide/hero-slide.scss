@@ -1,0 +1,86 @@
+@use "../../scss/" as *;
+
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.hero-slide {
+  overflow-x: auto;
+  margin-top: 8rem;
+
+  &__item {
+    position: relative;
+
+    &__info {
+      position: absolute;
+      bottom: 12%;
+      left: 7%;
+      color: $white;
+
+      & > * ~ * {
+        margin-top: 5%;
+
+        @include mobile {
+          margin-top: 2%;
+        }
+      }
+
+      &__title {
+        overflow: hidden;
+        .title {
+          line-height: 1;
+          transition: transform 0.6s ease;
+        }
+      }
+
+      &__genres {
+        display: flex;
+        font-weight: 100;
+        overflow: hidden;
+
+        .genre {
+          margin-right: 10px;
+          transition: transform 0.5s ease;
+          transition-delay: 0.3s;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        overflow: hidden;
+
+        .button {
+          transition: transform 0.5s ease;
+          transition-delay: 0.6s;
+        }
+
+        & > * {
+          margin-right: 10px;
+        }
+      }
+
+      .title,
+      .genre,
+      .button {
+        transform: translateY(-150%);
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 3rem;
+  }
+}
+
+.slick-active {
+  .hero-slide__item {
+    &__info {
+      .title,
+      .genre,
+      .button {
+        transform: translateY(0);
+      }
+    }
+  }
+}

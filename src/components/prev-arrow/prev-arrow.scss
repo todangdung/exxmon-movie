@@ -1,0 +1,64 @@
+@use "../../scss/" as *;
+
+.slick-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+  font-size: 1rem;
+  z-index: 1;
+
+  @include mobile {
+    left: 10px;
+  }
+
+  .icon {
+    color: $white;
+
+    &::before {
+      border-radius: 50%;
+      background-color: rgba($white, 0.2);
+      padding: 10px;
+    }
+  }
+
+  &::before {
+    content: "";
+  }
+}
+
+.prev-custom {
+  position: absolute;
+  top: -45px;
+  left: 80%;
+
+  @include tablet {
+    top: -35px;
+  }
+  @include mobile {
+    top: -25px;
+  }
+
+  @include tablet {
+    left: 80%;
+  }
+
+  @include mobile {
+    left: 75%;
+  }
+
+  .icon {
+    color: $white;
+
+    &::before {
+      border-radius: 50%;
+      border: 1px solid $txt-second-color;
+      padding: 10px;
+      color: black;
+
+      @include mobile {
+        padding: 7px;
+      }
+    }
+  }
+}

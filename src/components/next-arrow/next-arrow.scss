@@ -1,0 +1,56 @@
+@use "../../scss/" as *;
+
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  right: 35px;
+
+  @include mobile {
+    right: 20px;
+  }
+
+  .icon {
+    color: $white;
+
+    &::before {
+      border-radius: 50%;
+      background-color: rgba($white, 0.2);
+      padding: 10px;
+      color: white;
+      font-weight: 600;
+    }
+  }
+
+  &::before {
+    content: "";
+  }
+}
+
+.next-custom {
+  position: absolute;
+  top: -45px;
+
+  @include tablet {
+    top: -35px;
+  }
+
+  @include mobile {
+    top: -25px;
+  }
+  .icon {
+    color: $white;
+
+    &::before {
+      border-radius: 50%;
+      border: 1px solid $txt-second-color;
+      padding: 10px;
+      color: black;
+
+      @include mobile {
+        padding: 7px;
+      }
+    }
+  }
+}

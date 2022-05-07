@@ -1,0 +1,32 @@
+@use "../../scss/" as *;
+
+.footer {
+  left: 15%;
+  padding: 0 3rem;
+  box-shadow: $box-shadow;
+  @include flex(center, center);
+  flex-direction: column;
+  padding-bottom: 6rem;
+
+  .left-side__logo {
+    width: 100%;
+    @include flex(center, center);
+    margin-bottom: 2rem;
+  }
+
+  &__content {
+    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    width: 100%;
+
+    &__item {
+      display: grid;
+      font-weight: 600;
+      font-size: 1.2rem;
+
+      & > * {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

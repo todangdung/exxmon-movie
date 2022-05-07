@@ -1,0 +1,50 @@
+@use "../../scss/" as *;
+
+button {
+  cursor: pointer;
+  font-family: $font-family;
+  border: none;
+}
+
+.btn {
+  background-color: $main-color;
+  color: $white;
+  border-radius: 10px;
+  padding: 0.5rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 200;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: rgb(171, 0, 0);
+}
+
+.btn-transparent {
+  background-color: rgba(transparent, 0.5);
+  padding: 0.5rem, 1rem;
+
+  &.white {
+    background-color: rgba(rgb(123, 123, 123), 0.6);
+    color: $white;
+    padding: 0.4rem 0.6rem;
+    @include flex(center, center);
+    line-height: 1;
+
+    h1 {
+      display: block;
+    }
+  }
+  &.active {
+    background-color: rgba($main-color, 0.6);
+  }
+}
+
+.btn-transparent:hover {
+  box-shadow: unset;
+  background-color: rgba(transparent, 0.7);
+
+  &.white {
+    background-color: rgba($main-color, 0.6);
+  }
+}

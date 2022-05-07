@@ -1,0 +1,22 @@
+@use "../../scss/" as *;
+
+.input {
+  @include flex(center, unset);
+  position: relative;
+
+  i {
+    position: absolute;
+    left: 1rem;
+    font-size: 1rem;
+    color: $txt-second-color;
+  }
+  input {
+    border-radius: 3rem;
+    background-color: transparent;
+    padding: 7px 0 7px 2.5rem;
+    font-size: 1rem;
+    font-family: $font-family;
+    color: $txt-color;
+    border: 1px solid $txt-second-color;
+  }
+}
