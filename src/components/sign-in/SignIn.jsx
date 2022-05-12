@@ -1,4 +1,5 @@
-import { Link, useNavigate, useEffect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { addDocument, signIn } from "../../firebase/services";
 import "./sign-in.scss";
 import { fbSignIn, ggSignIn, signUp } from "../../firebase/services";
@@ -10,8 +11,17 @@ import TextField from "../../formik/TextField";
 
 import { validateSignIn } from "../../formik/validate";
 
+import { AuthContext } from "../../context/AuthProvider";
+
 const SignIn = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (Object.keys(user).length > 0) {
+      navigate("/");
+    }
+  }, [user]);
 
   const handleSignIn = async (values) => {
     try {

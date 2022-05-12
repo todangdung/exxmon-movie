@@ -13,12 +13,7 @@ import "./hero-slide.scss";
 
 const HeroSlide = () => {
   const [items, setItems] = useState([]);
-  const navigate = useNavigate();
   let cate = useParams();
-
-  if (!cate.category) {
-    navigate("movie");
-  }
 
   useEffect(() => {
     const getMovies = async () => {

@@ -26,7 +26,6 @@ const Header = (props) => {
   const { user } = useContext(AuthContext);
   const { pathname } = useLocation();
   const [login, setLogin] = useState(false);
-  const [active, setActive] = useState(false);
 
   const personRef = useRef(null);
 
@@ -54,7 +53,6 @@ const Header = (props) => {
   useEffect(() => {
     const close = (e) => {
       if (e.path[3].id !== "person") {
-        setActive(false);
         personRef.current.classList.remove("active");
       }
     };
@@ -62,7 +60,7 @@ const Header = (props) => {
     document.body.addEventListener("click", close);
 
     return () => document.body.removeEventListener("click", close);
-  }, [checkLogin]);
+  }, []);
 
   return (
     <div className="header">

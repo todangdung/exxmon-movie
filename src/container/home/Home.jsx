@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import {
   Header,
@@ -12,10 +11,19 @@ import {
 import { movieType, tvType } from "../../api/movieApi";
 
 import "./home.scss";
+import { useEffect } from "react";
 
 const Home = () => {
   const { category } = useParams();
   const movie = JSON.parse(localStorage.getItem(category));
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!category) {
+      navigate("movie");
+    }
+  }, [category]);
 
   return (
     <>

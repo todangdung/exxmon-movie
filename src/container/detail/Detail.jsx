@@ -2,16 +2,28 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { useParams } from "react-router-dom";
 import StarRatings from "react-star-ratings";
-import movieApi from "../../api/movieApi";
+import movieApi, { tvType } from "../../api/movieApi";
 import apiConfig from "../../api/apiConfig";
 import CastList from "./CastList";
+import { movieType } from "../../api/movieApi";
 import "./detail.scss";
-import { Footer, MovieList, Review, Videos } from "../../components";
+import {
+  Button,
+  Footer,
+  MovieList,
+  Review,
+  TransparentButton,
+  TrailerVideos,
+  MovieVideos,
+  StandingList,
+} from "../../components";
 
 const Detail = () => {
   const [item, setItem] = useState([]);
   const { id, category } = useParams();
   const detailRef = useRef(null);
+
+  const [trailer, setTrailer] = useState("");
 
   useEffect(() => {
     let response = null;
@@ -25,6 +37,7 @@ const Detail = () => {
     detailRef.current.scrollTo(0, 0);
 
     getDetail();
+    setTrailer("");
   }, [id, category]);
 
   const bg = apiConfig.originalImage(item.backdrop_path || item.poster_path);
@@ -36,39 +49,79 @@ const Detail = () => {
           <img src={bg} alt="" />
         </div>
         <DetailContent item={item} />
-        <Videos category={category} id={id} />
-        {item.backdrop_path ? (
-          <div className="detail__image section">
-            <h2 className="mb-2">Photos</h2>
+        <div className="detail__btns section">
+          <Button onClick={() => setTrailer("movie")}>Watch now</Button>
+          <TransparentButton onClick={() => setTrailer("trailer")}>
+            Watch trailer
+          </TransparentButton>
+        </div>
+        <div className="detail__body">
+          <div className="detail__middle">
+            {trailer === "trailer" ? (
+              <TrailerVideos
+                category={category}
+                id={id}
+                trailer={trailer}
+                item={item}
+              />
+            ) : trailer === "movie" ? (
+              <MovieVideos category={category} id={id} item={item} />
+            ) : null}
+            {item.backdrop_path ? (
+              <div className="detail__image section">
+                <h2 className="mb-2">Photos</h2>
 
-            <div className="detail__image__content">
-              <div className="detail__image__content__item">
-                <img src={apiConfig.originalImage(item.backdrop_path)} alt="" />
+                <div className="detail__image__content">
+                  <div className="detail__image__content__item">
+                    <img
+                      src={apiConfig.originalImage(item.backdrop_path)}
+                      alt=""
+                    />
+                  </div>
+                  <div className="detail__image__content__item">
+                    <img
+                      src={apiConfig.originalImage(
+                        item.belongs_to_collection &&
+                          item.belongs_to_collection.backdrop_path
+                      )}
+                      alt=""
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="detail__image__content__item">
-                <img
-                  src={apiConfig.originalImage(
-                    item.belongs_to_collection &&
-                      item.belongs_to_collection.backdrop_path
-                  )}
-                  alt=""
-                />
+            ) : null}
+            <Review category={category} id={id} />
+
+            <div className="section ">
+              <div className="section-header">
+                <h2>Recommendations</h2>
               </div>
+              <MovieList
+                category={category}
+                type="recommendations"
+                id={id}
+                slidesToShow={4}
+              />
             </div>
           </div>
-        ) : null}
-        <Review category={category} id={id} />
-
-        <div className="section ">
-          <div className="section-header">
-            <h2>Recommendations</h2>
+          <div className="detail__body__right">
+            {trailer && (
+              <>
+                <StandingList
+                  category="movie"
+                  type={movieType.popular}
+                  button="none"
+                  title="Popular movie"
+                />
+                <StandingList
+                  category="tv"
+                  type={tvType.popular}
+                  button="none"
+                  title="Popular tv"
+                />
+              </>
+            )}
           </div>
-          <MovieList
-            category={category}
-            type="recommendations"
-            id={id}
-            slidesToShow={6}
-          />
         </div>
         <Footer />
       </div>
@@ -112,14 +165,16 @@ const DetailContent = (props) => {
           </div>
           <div className="runtime">
             <span>Runtime</span>
-            <span className="runtime__content">{item.runtime} Mins</span>
+            <span className="runtime__content">
+              {item.runtime || item.episode_run_time} Mins
+            </span>
           </div>
         </div>
         <div className="genres">
           {item.genres &&
-            item.genres.map((item, index) => (
-              <span key={index}>{item.name}</span>
-            ))}
+            item.genres
+              .slice(0, 4)
+              .map((item, index) => <span key={index}>{item.name}</span>)}
         </div>
         <div className="overview">
           <h3>Over view</h3>

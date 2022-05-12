@@ -1,16 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import { CardSmall } from "../movie-card/MovieCard";
 import movieApi, { category, movieType, tvType } from "../../api/movieApi";
-import Button, { TransparentButton } from "../button/Button";
+import Button from "../button/Button";
 
 import "./standing-list.scss";
 
 const StandingList = (props) => {
   const [items, setItems] = useState([]);
-  const navigate = useNavigate();
   const [slice, setSlice] = useState(3);
 
   useEffect(() => {
@@ -43,6 +40,9 @@ const StandingList = (props) => {
           default:
             response = await movieApi.search(category.tv, { params });
         }
+      }
+      if (props.button === "none") {
+        setSlice(20);
       }
 
       setItems(response.results.slice(0, slice));
@@ -94,15 +94,20 @@ const StandingList = (props) => {
 
   return (
     <div className="standing-list">
-      {items.map((item, index) => (
-        <CardSmall id={item.id} category={props.category} key={index} />
-      ))}
-      <div className="button">
-        {items.length < 4 ? (
-          <Button onClick={seeMore}>See more</Button>
-        ) : (
-          <Button onClick={seeLess}>See less</Button>
-        )}
+      <div className="standing-list__title section-header">
+        <h3 className="title">{props.title}</h3>
+      </div>
+      <div className="standing-list__body">
+        {items.map((item, index) => (
+          <CardSmall id={item.id} category={props.category} key={index} />
+        ))}
+        <div className="button">
+          {props.button === "none" ? null : items.length < 4 ? (
+            <Button onClick={seeMore}>See more</Button>
+          ) : (
+            <Button onClick={seeLess}>See less</Button>
+          )}
+        </div>
       </div>
     </div>
   );

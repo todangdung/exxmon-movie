@@ -1,0 +1,41 @@
+@use "../../scss/" as *;
+
+.movie-video {
+  .title {
+    margin: 1rem 0;
+  }
+  &__info {
+    .seasons {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &__seasons {
+      button {
+        padding: 10px 15px;
+        background-color: $main-color;
+        color: $white;
+        font-weight: 500;
+        margin-right: 10px;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .episode {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &__episode__item {
+      button {
+        padding: 10px 15px;
+        background-color: $main-color;
+        color: $white;
+        font-weight: 500;
+        margin-right: 10px;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

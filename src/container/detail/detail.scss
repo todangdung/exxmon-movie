@@ -41,17 +41,45 @@
     }
   }
 
+  &__btns {
+    @include flex(center, space-between);
+    width: 35%;
+
+    & > * {
+      height: 50px;
+    }
+
+    @include tablet {
+      & > * {
+        height: 40px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @include mobile {
+      width: 55%;
+      margin-top: 1rem;
+
+      & > * {
+        height: 30px;
+      }
+    }
+  }
+
   &__content {
     position: relative;
-    margin-top: -15rem;
-    display: flex;
+    margin-top: -20rem;
+    @include flex(center, center);
     color: #000000;
     align-items: center;
-    margin-bottom: 4rem;
+    margin-bottom: 0;
+
+    @include mobile {
+      flex-direction: column;
+    }
 
     &__image {
-      height: 550px;
-      width: 35%;
+      width: 30%;
 
       @include tablet {
         margin-right: 2rem;
@@ -59,18 +87,30 @@
       }
 
       @include mobile {
-        display: none;
+        height: 250px;
+        width: unset;
+        margin-bottom: 2rem;
       }
 
       img {
         height: 100%;
         border-radius: 1rem;
         object-fit: cover;
+        width: 100%;
       }
     }
 
     &__info {
       flex: 1;
+      padding-left: 3rem;
+
+      @include tablet {
+        padding-left: 0rem;
+      }
+
+      @include mobile {
+        padding-left: 0;
+      }
 
       .title {
         line-height: 1;
@@ -150,7 +190,7 @@
           }
 
           @include tablet {
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
           }
 
           @include mobile {
@@ -175,6 +215,41 @@
         border: none;
         @include mobile {
           height: 200px;
+        }
+      }
+    }
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 75% 25%;
+
+    padding-top: 4rem;
+
+    @include mobile {
+      grid-template-columns: 100% 0%;
+    }
+
+    &__right {
+      .standing-list__body {
+        margin-bottom: 3rem;
+
+        overflow-y: auto;
+        max-height: 500px;
+        width: 100%;
+        position: relative;
+
+        &::-webkit-scrollbar {
+          width: 9px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: rgb(107, 107, 107);
+          border-radius: 3rem;
+        }
+        &::-webkit-scrollbar-track {
+          background: rgb(172, 172, 172);
+          border-radius: 3rem;
         }
       }
     }

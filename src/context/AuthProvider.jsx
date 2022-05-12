@@ -9,14 +9,12 @@ import { auth } from "../firebase/config";
 export const AuthContext = React.createContext();
 
 const AuthProvider = (props) => {
-  const navigate = useNavigate();
   const [user, setUser] = useState({});
 
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        navigate("/");
       }
     });
 
