@@ -8,9 +8,19 @@ import { Form, Formik } from "formik";
 import TextField from "../../formik/TextField";
 
 import { validateSignUp } from "../../formik/validate";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const SignUp = () => {
+  const { user } = useContext(AuthContext);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (Object.keys(user).length > 0) {
+      navigate("/");
+    }
+  }, [user]);
 
   const handleSignUp = async (values) => {
     console.log(values);
