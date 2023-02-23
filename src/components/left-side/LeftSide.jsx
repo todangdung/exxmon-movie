@@ -1,10 +1,8 @@
 import { signOut } from "firebase/auth";
-import React, { useEffect, useState, useCallback, useContext } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { auth } from "../../firebase/config";
-
-import { AuthContext } from "../../context/AuthProvider";
 
 import "./left-side.scss";
 
@@ -67,9 +65,6 @@ const general = [
 
 const LeftSide = () => {
     const [active, setActive] = useState(false);
-    const { user } = useContext(AuthContext);
-
-    const navigate = useNavigate();
 
     const handelToggleMobile = useCallback(() => {
         if (!active) {
@@ -79,7 +74,7 @@ const LeftSide = () => {
 
     useEffect(() => {
         const close = (e) => {
-            if (e.path[0].id !== "toggle") {
+            if (e.srcElement.id !== "toggle") {
                 setActive(false);
                 handelToggleMobile();
             }

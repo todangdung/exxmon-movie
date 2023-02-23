@@ -67,7 +67,6 @@ const SignIn = () => {
                 icon="bi bi-lock"
                 name="password"
               />
-              {console.log(formik.errors)}
               <button type="submit">sign in</button>
             </Form>
             <div className="sign-in__content__media">
